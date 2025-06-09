@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Feliz Dia dos Namorados</title>
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(to bottom right, #f7a399, #ffe39e);
+      --btn-color: #ff6f91;
+      --btn-hover: #ff4e73;
+      --text-color: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    img {
+    width: 60vw;
+    max-width: 220px;
+    height: 60vw; /* altura igual à largura */
+    max-height: 220px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid white;
+    box-shadow: 0 0 10px rgba(255,255,255,0.6);
+    margin-bottom: 20px;
+  }
+
+
+    h1 {
+      font-size: 2em;
+      margin: 10px 0;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 1em;
+      background-color: var(--btn-color);
+      border: none;
+      border-radius: 30px;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: var(--btn-hover);
+    }
+
+    p {
+      font-size: 1.1em;
+      margin: 20px;
+      transition: opacity 0.5s;
+      min-height: 60px;
+    }
+
+    .heart {
+      position: absolute;
+      top: -10px;
+      color: #ff4e73;
+      animation: fall 5s linear infinite;
+      font-size: 20px;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    footer {
+      position: absolute;
+      bottom: 10px;
+      font-size: 0.9em;
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.6em;
+      }
+      button {
+        font-size: 0.95em;
+      }
+      p {
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <img src="img/casal.jpeg" alt="Nós dois">
+
+  <h1>Feliz Dia dos Namorados 💘</h1>
+  <button onclick="mostrarMensagem()">Clique aqui, amor 💌</button>
+  <p id="mensagem"></p>
+
+  <footer>Feito com amor só pra você 💕</footer>
+
+  
+  <audio id="audio" src="https://www.bensound.com/bensound-music/bensound-love.mp3"></audio>
+
+  <script>
+    const mensagens = [
+      "Eu poderia te amar mil vezes e ainda seria pouco. 💖",
+      "Você é meu lugar favorito no mundo inteiro. 🌍❤️",
+      "Estar com você é como viver num sonho bom todos os dias. ✨",
+      "Obrigada por ser meu amor, meu apoio e meu melhor amigo(a). 🥰",
+      "Meu coração é todinho seu. Sempre foi. 💘",
+      "Com você, todos os dias são especiais. 💫",
+      "Te amo mais do que palavras conseguem expressar. 💌",
+      "Nada se compara ao nosso amor. Obrigada por tudo. 💑",
+      "Você é minha pessoa. Minha metade. Meu tudo. 💕",
+      "Amar você é a melhor parte da minha vida. ❤️"
+    ];
+
+    let tocouMusica = false;
+    let audioTocando = false;
+
+    function mostrarMensagem() {
+    const audio = document.getElementById("audio");
+    const msg = document.getElementById("mensagem");
+    const randomIndex = Math.floor(Math.random() * mensagens.length);
+    msg.textContent = mensagens[randomIndex];
+
+  // Controlar início e parada da música
+  if (!audioTocando) {
+    audio.play();
+    audioTocando = true;
+  } else {
+    audio.pause();
+    audio.currentTime = 0;
+    audioTocando = false;
+  }
+}
+
+    const numCorações = 30;
+    for (let i = 0; i < numCorações; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      heart.textContent = '❤️';
+      document.body.appendChild(heart);
+    }
+  </script>
+</body>
+</html>
